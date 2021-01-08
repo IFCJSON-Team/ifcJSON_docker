@@ -1,0 +1,11 @@
+name: testenv2
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - gunicorn
+  - flask
+  - ifcopenshell
+  - flask-cors
+  - pip
+prefix: /Users/nirviksaha/opt/miniconda3/envs/testenv2
