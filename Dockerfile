@@ -3,7 +3,7 @@ FROM continuumio/miniconda:latest
 WORKDIR /home/docker_conda_template
 
 COPY environment.yml ./
-COPY test.py ./
+COPY server.py ./
 COPY templates templates/
 COPY static static/
 

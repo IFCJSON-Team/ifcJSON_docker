@@ -12,11 +12,9 @@ function init3d() {
 	controls.addEventListener('change', render);
 	var axis = new THREE.AxesHelper(20);
 	scene.add(axis);
-
 	const light = new THREE.PointLight(0xff0000, 1, 100);
 	light.position.set(0, 0, 1000);
 	scene.add(light);
-
 	render();
 }
 

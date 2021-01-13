@@ -28,7 +28,9 @@ function genGeomFunc(product_data) {
 		BldgObjLi.push(obj);
 		// table for ui
 		let tr = updateDataFields(product_data[i], prod_name, i); //below
-		tbl.appendChild(tr);
+		if(tr){
+				tbl.appendChild(tr);
+		}
 	}
 	div.appendChild(tbl); // data-ui
 	updateUI(); // below
@@ -36,6 +38,9 @@ function genGeomFunc(product_data) {
 }
 
 function updateDataFields(data, name, i) {
+	if (data.vertices.length === 0) {
+		return false;
+	}
 	let tr = document.createElement('tr');
 	let td_name = document.createElement('td');
 	let td_num = document.createElement('td');
@@ -87,8 +92,11 @@ function updateUI() {
 				BldgObjLi[i].ShowFaces = t;
 			}
 			//
-			// console.log(selNames);
 			render(); // nsFuncUI3d
 		});
 	});
+}
+
+function saveDataDB(){
+
 }

@@ -32,8 +32,27 @@
 			<table>
 				<tr>
 					<td>
+						<h4>File: Geometric contents</h4>
 						<div id="selectors" class="left"></div>
-						<button id="showdatabtn" onclick="showDataFunc()">Show Data</button>
+						<br>
+						<div id="SaveDBDiv">
+							<h4>Save File to Database</h4>
+							<form action="save_to_db" method="POST">
+								<table>
+									<tr>
+										<td>
+											Enter filename:
+											<input type="text" name="filename">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="submit" class="button" value="SaveData to DB"/>
+										</td>
+									</tr>
+								</table>
+							</form>
+						</div>
 					</td>
 					<td>
 						<div id="div3d"></div>
@@ -41,6 +60,7 @@
 				</tr>
 			</table>
 		</div>
+
 		<script>
 			const Width=500;
 			const Height=500;

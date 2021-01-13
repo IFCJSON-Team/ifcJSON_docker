@@ -4,13 +4,60 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
 </head>
 <body>
-    <form action="upload_file"
+    <h1> upload a new file and view results </h1>
+    <form action="display_file"
           method="POST"
           enctype="multipart/form-data">
-    <input type="file" name="file" id="file"/>
-    <input type="submit" value="submit" id="done"/>
+    <input type="file" class="form-button" name="file" id="file"/>
+    <input type="submit" class ="form-button" value="submit for inspection" id="done"/>
     </form>
+    <br>
+    <hr>
+    <h1> review files in db </h1>
+    <h4>click on entry & submit to review</h4>
+    <div id="collections"></div>
+    <form action="view_db_entry" method="POST">
+        <input type="text" id="selectedFile" name="filename">
+        <input type="submit" class ="form-button" value="submit for view">
+    </form>
+    <script>
+        div=document.getElementById("collections");
+        while(div.hasChildNodes()){
+            div.removeChild(div.firstChild);
+        }
+        const collections= {{ data|safe }};
+        let k=0;
+        let tbl=document.createElement('table');
+        tbl.className = 'datatable';
+        collections.forEach(e=>{
+            let tr=document.createElement('tr');
+            let td_num=document.createElement('td');
+            td_num.innerHTML=(k+1).toString();
+            td_num.style.color="blue";
+            tr.appendChild(td_num);
+            let td=document.createElement('td');
+            p=document.createElement("p");
+            p.style.color="blue";
+            p.style.fontSize="14px";
+            p.innerHTML=e;
+            p.className="collection-names";
+            p.addEventListener('click', function(){
+                document.getElementById("selectedFile").value=e;
+                console.log(e);
+            });
+            console.log(e);
+            td.appendChild(p);
+            tr.appendChild(td);
+            tbl.appendChild(tr);
+            k++;
+        });
+        div.appendChild(tbl);
+    </script>
+    <hr>
 </body>
 </html>
+
+

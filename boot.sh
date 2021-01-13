@@ -1,2 +1,2 @@
 #!/bin/sh
-exec gunicorn -b :3200 test:app
+exec gunicorn -b :3200 server:app
