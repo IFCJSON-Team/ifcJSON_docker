@@ -7,5 +7,7 @@ dependencies:
   - flask
   - ifcopenshell
   - flask-cors
+  - pymongo
+  - dnspython
   - pip
 prefix: /Users/nirviksaha/opt/miniconda3/envs/testenv2

@@ -1,15 +1,16 @@
 FROM continuumio/miniconda:latest
 
-WORKDIR /home/docker_conda_template
+WORKDIR /home/docker_conda_ifcproj
 
 COPY environment.yml ./
 COPY server.py ./
+COPY process_ifc.py ./
+COPY crud.py ./
+COPY tmpIfcFile.ifc ./
 COPY templates templates/
 COPY static static/
 
-
 COPY boot.sh ./
-
 
 RUN chmod +x boot.sh
 
