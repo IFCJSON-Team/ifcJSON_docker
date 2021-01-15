@@ -11,8 +11,13 @@
     <form action="display_file"
           method="POST"
           enctype="multipart/form-data">
-    <input type="file" class="form-button" name="file" id="file"/>
-    <input type="submit" class ="form-button" value="submit for inspection" id="done"/>
+        <input type="file" class="form-button" name="file" id="file"/>
+        <input type="submit" class ="form-button" value="submit for inspection" id="done"/>
+    </form>
+    <h1>IFC File to JSON Converter</h1>
+    <form action = "run_jan_func" method="POST" enctype="multipart/form-data">
+        <input type="file" class="form-button" name="filename" id="file"/>
+        <input type="submit" class="form-button" value="submit to generate JSON"/>
     </form>
     <br>
     <hr>

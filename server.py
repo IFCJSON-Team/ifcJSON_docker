@@ -6,7 +6,7 @@ Created on Wed Nov  4 04:41:54 2020
 
 from flask import Flask, jsonify, render_template, redirect, url_for, request
 from flask_cors import CORS
-
+from jan_func import generate_json
 from crud import Database
 from process_ifc import *
 
@@ -72,6 +72,18 @@ def save_to_db():
     print('save to db', filename)
     return redirect(url_for('upload'))
 
+@app.route('/run_jan_func', methods=["GET", "POST"])
+def run_jan_func():
+    if request.method == 'POST':
+        f = request.files['filename']
+        chunk = f.stream.read()
+        s = chunk.decode(encoding='UTF-8')
+        with open("janIfcFile.ifc", "w") as file:
+            file.writelines(s)
+        json=generate_json("janIfcFile.ifc", "janJsonFile.json")
+        return json
+    else:
+        return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)
