@@ -7,27 +7,25 @@
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
 </head>
 <body>
-    <table>
-        <tr>
-            <h1>IFC File to JSON Converter</h1>
-            <form action = "run_jan_func" method="POST" enctype="multipart/form-data">
-                <input type="file" class="form-button" name="filename" id="file"/>
-                <input type="submit" class="form-button" value="submit to generate JSON"/>
-            </form>
-        </tr>
-        <tr>
-            <h1> upload a new file and view results </h1>
-            <form action="display_file"
-                  method="POST"
-                  enctype="multipart/form-data">
-                <input type="file" class="form-button" name="file" id="file"/>
-                <input type="submit" class ="form-button" value="submit for inspection" id="done"/>
-            </form>
-        </tr>
-    </table>
 
-
+    <h1>IFC File to JSON Converter</h1>
+    <form action = "run_jan_func" method="POST" enctype="multipart/form-data">
+        <input type="file" class="form-button" name="filename" id="file"/>
+        <input type="submit" class="form-button" value="submit to generate JSON"/>
+    </form>
+    <br>
     <hr>
+    <br>
+    <h1> upload a new file and view results </h1>
+    <form action="display_file"
+          method="POST"
+          enctype="multipart/form-data">
+        <input type="file" class="form-button" name="file" id="file"/>
+        <input type="submit" class ="form-button" value="submit for inspection" id="done"/>
+    </form>
+    <br>
+    <hr>
+
     <h1> review files in db </h1>
     <h4>click on entry & submit to review</h4>
     <div id="collections"></div>
