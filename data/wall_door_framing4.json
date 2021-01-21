@@ -1,0 +1,55 @@
+{
+  "@context": {
+    "@vocab": "http://bsi.org/ifc/4x3/",
+    "@base": "http://myfile.org/ids/",
+    "ref": "@id",
+    "data": "@graph",
+    "type": "@type",
+    "globalId": "@id"
+  },
+  "@type": "IfcProject",
+  "@explicit": true,
+  "isDecomposedBy": {  
+    "@explicit": true,
+    "relatedObjects": {
+      "@explicit": true,  
+      "isDecomposedBy": {
+        "@explicit": true, 
+        "relatedObjects": {
+          "@explicit": true, 
+          "isDecomposedBy": {
+            "@explicit": true, 
+            "relatedObjects": {
+              "@explicit": true, 
+              "containsElements": {
+                "@explicit": true, 
+                "relatedElements": {
+                  "@explicit": true, 
+                  "isDefinedBy":{
+                    "@explicit":true,
+                    "relatingPropertyDefinition":{
+                      "@explicit":true,
+                      "hasProperties":{
+                        "@explicit":true,
+                        "name":{
+                          "@explicit":true
+                        },
+                        "nominalValue":{
+                          "@explicit":true,
+                          "value":{
+                            "@explicit":true
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

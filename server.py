@@ -9,9 +9,10 @@ from flask_cors import CORS
 from jan_func import generate_json
 from crud import Database
 from process_ifc import *
+import json
 
 
-app=Flask(__name__)
+app = Flask(__name__)
 
 CORS(app)
 
@@ -26,15 +27,16 @@ def hello2():
     return render_template('index.html')
 """
 
+
 @app.route('/', methods=['GET'])
 def upload():
-    db=Database()
-    collections=db.get_collections()
-    coll_names=[]
+    db = Database()
+    collections = db.get_collections()
+    coll_names = []
     for i in collections:
         print(i['name'])
         coll_names.append(i['name'])
-    return render_template('ifcFileUpload.html', data = coll_names)
+    return render_template('ifcFileUpload.html', data=coll_names)
 
 
 @app.route('/display_file', methods=['GET', 'POST'])
@@ -43,19 +45,20 @@ def display_file():
         f = request.files['file']
         chunk = f.stream.read()  # bytes
         s = chunk.decode(encoding='UTF-8')  # string
-        if(len(s)==0):
+        if(len(s) == 0):
             return redirect(url_for('upload'))
         with open("tmpIfcFile.ifc", "w") as file:
             file.writelines(s)
         product_li = runExportFuncs()
         return render_template("ifcGenGeom.html", data=product_li)
 
+
 @app.route('/view_db_entry', methods=['GET', 'POST'])
 def view_db_entry():
     filename = request.form['filename']
     print('view entry', filename)
-    db=Database()
-    r=db.read_records(filename)
+    db = Database()
+    r = db.read_records(filename)
     with open("tmpIfcFile.ifc", "w") as file:
         li = r.split("\\n")
         for i in li:
@@ -66,11 +69,12 @@ def view_db_entry():
 
 @app.route('/save_to_db', methods=['GET', 'POST'])
 def save_to_db():
-    filename=request.form['filename']
-    db= Database()
+    filename = request.form['filename']
+    db = Database()
     db.create_records(filename)
     print('save to db', filename)
     return redirect(url_for('upload'))
+
 
 @app.route('/run_jan_func', methods=["GET", "POST"])
 def run_jan_func():
@@ -80,11 +84,13 @@ def run_jan_func():
         s = chunk.decode(encoding='UTF-8')
         with open("janIfcFile.ifc", "w") as file:
             file.writelines(s)
-        json=generate_json("janIfcFile.ifc", "janJsonFile.json")
-        return json
+        jsonData = json.dumps(generate_json(
+            "janIfcFile.ifc", "janJsonFile.json"))
+        #  print(json)
+        return render_template('run_jsonld.html', data=jsonData)
     else:
-        return redirect(url_for('index'))
+        return redirect(url_for('index.html'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)
-

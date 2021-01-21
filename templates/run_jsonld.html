@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jsonld/1.0.0/jsonld.min.js"></script>
+		<script
+			type="text/javascript"
+			src="{{url_for('static', filename='jsonldFunc.js')}}"
+		></script>
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>Json ld</h1>
+		<table>
+			<tr>
+				<td>
+					<button class="button" onclick="showJson()">Show Json Data</button>
+				</td>
+				<td>
+					<button class="button" onclick="showJsonLD()">
+						Show Json Linked Data
+					</button>
+				</td>
+				<td>
+					<button class="button" onclick="genFrame()">Show Framed View</button>
+				</td>
+			</tr>
+		</table>
+
+		<div id="floatingOutputPanel" style="display: none">
+			<h1><span style="color: white"> Output Framed Data </span></h1>
+			<button class="mainbutton" onclick="hideOutput();">
+				Close Output Panel
+			</button>
+			<textarea id="outputTAFrame" class="interactiveTA"></textarea>
+		</div>
+
+		<table id="interactiveTbl">
+			<tr>
+				<td>
+					<p>Json or JsonLD (use buttons above)</p>
+					<textarea id="interactiveTAData" class="interactiveTA"></textarea>
+				</td>
+				<td>
+					<p>Add a frame (paste or type)</p>
+					<textarea id="interactiveTAFrame" class="interactiveTA"></textarea>
+				</td>
+			</tr>
+		</table>
+		<script>
+			let jsonDataIn={{ data|safe }};
+			const jsonLdContext={
+			    "@context":{
+			    "@vocab": "http://bsi.org/ifc/4x3/",
+			    "@base": "http://myfile.org/ids/",
+			    "ref": "@id",
+			    "data": "@graph",
+			    "type": "@type",
+			    "globalId": "@id"
+			},...jsonDataIn};
+			const jsonData=jsonDataIn;
+			let taData=document.getElementById("interactiveTAData");
+			prettyPrint(taData, jsonData);
+		</script>
+	</body>
+</html>

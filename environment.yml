@@ -9,5 +9,6 @@ dependencies:
   - flask-cors
   - pymongo
   - dnspython
+  - pyld
   - pip
 prefix: /Users/nirviksaha/opt/miniconda3/envs/testenv2
