@@ -1,0 +1,3 @@
+[submodule "lib/ifcJSON"]
+	path = lib/ifcJSON
+	url = https://github.com/buildingSMART/ifcJSON.git
