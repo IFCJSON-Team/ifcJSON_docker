@@ -1,20 +1,20 @@
-FROM continuumio/miniconda:latest
+FROM python:3.8
 
-COPY docker/environment.yml .
+# copy the dependencies file to the working directory
+COPY requirements.txt .
 
-RUN conda env create -f environment.yml
-
-RUN echo "source activate env" > ~/.bashrc
-
-ENV PATH /opt/conda/envs/env/bin:$PATH
+# install dependencies
+RUN pip install -r requirements.txt
 
 WORKDIR /app
 
+ADD https://s3.amazonaws.com/ifcopenshell-builds/ifcopenshell-python-38-v0.6.0-3bbdc3f-linux64.zip /tmp/ifcopenshell.zip
+RUN unzip /tmp/ifcopenshell.zip -d .
+
 COPY lib/ifcJSON/file_converters/ifcjson ./ifcjson
+
 COPY app ./
 
 EXPOSE 3200
 
 ENTRYPOINT ["python","/app/app.py"]
-
-# CMD ["flask", "run", "-h", "0.0.0.0", "-p", "3200"]
