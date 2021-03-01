@@ -6,6 +6,7 @@ from flask import Flask, request, redirect, jsonify, send_from_directory, send_f
 from werkzeug.utils import secure_filename
 
 import file_converters
+import schema_validator
 
 UPLOAD_FOLDER = 'upload'
 
@@ -54,19 +55,37 @@ def endpoint_json2ifc():
         resp.status_code = 400
         return resp
     if file and allowed_file(file.filename, {"json"}):
-        print("ontvangen")
         filename = secure_filename(file.filename)
         upload_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(upload_path)
         out_file = file_converters.json2ifc(upload_path)
-        # resp = jsonify({'message' : out_file_name})
-        # resp.status_code = 200
-        # return resp
         filepath = os.path.split(out_file)
         return send_from_directory(filepath[0], filepath[1], as_attachment=True)
-        # return send_file(out_file_name)
     else:
-        resp = jsonify({'message' : 'Allowed file types are ifc, ifczip, ifcxml'})
+        resp = jsonify({'message' : 'Allowed file type json'})
+        resp.status_code = 400
+        return resp
+        
+@app.route('/validate', methods=['POST'])
+def endpoint_validate():
+    if 'file' not in request.files:
+        resp = jsonify({'message' : 'No file part in the request'})
+        resp.status_code = 400
+        return resp
+    file = request.files['file']
+    if file.filename == '':
+        resp = jsonify({'message' : 'No file in the request'})
+        resp.status_code = 400
+        return resp
+    if file and allowed_file(file.filename, {"json"}):
+        filename = secure_filename(file.filename)
+        upload_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(upload_path)
+        resp = jsonify({'message' : schema_validator.json_validate(upload_path)})
+        resp.status_code = 200
+        return resp
+    else:
+        resp = jsonify({'message' : 'Allowed file type json'})
         resp.status_code = 400
         return resp
 
@@ -75,6 +94,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-# from api import ding
-# ding.main()

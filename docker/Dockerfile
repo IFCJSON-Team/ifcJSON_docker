@@ -11,7 +11,11 @@ WORKDIR /app
 ADD https://s3.amazonaws.com/ifcopenshell-builds/ifcopenshell-python-38-v0.6.0-3bbdc3f-linux64.zip /tmp/ifcopenshell.zip
 RUN unzip /tmp/ifcopenshell.zip -d .
 
+# file converters
 COPY lib/ifcJSON/file_converters/ifcjson ./ifcjson
+
+# ifcJSON Schema
+COPY lib/ifcJSON/Schema/IFC4.json ./
 
 COPY app ./
 
