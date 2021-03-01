@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "4ea8f48f-e1d1-44e5-bf29-f4e9b5aeed08",
+		"name": "ifcJSON API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ifc2json",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "air-terminal-element.ifc"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3200/ifc2json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3200",
+					"path": [
+						"ifc2json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "json2ifc",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "air-terminal-element.json"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3200/json2ifc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3200",
+					"path": [
+						"json2ifc"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
