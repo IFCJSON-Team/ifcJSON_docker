@@ -62,7 +62,35 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "validate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "air-terminal-element.json"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3200/validate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3200",
+					"path": [
+						"validate"
+					]
+				}
+			},
+			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
