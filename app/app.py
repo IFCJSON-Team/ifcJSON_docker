@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename
 import file_converters
 import schema_validator
 
-UPLOAD_FOLDER = 'upload'
+UPLOAD_FOLDER = '/tmp'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
