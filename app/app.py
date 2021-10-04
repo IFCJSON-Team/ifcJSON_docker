@@ -37,7 +37,7 @@ def endpoint_ifc2json():
         filename = secure_filename(file.filename)
         upload_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(upload_path)
-        return jsonify(file_converters.ifc2json(upload_path))
+        return jsonify(file_converters.ifc2json(upload_path, request.form.to_dict()))
     else:
         resp = jsonify({'message' : 'Allowed file types are ifc, ifczip, ifcxml'})
         resp.status_code = 400
