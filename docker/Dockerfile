@@ -8,7 +8,7 @@ RUN pip install -r requirements.txt
 
 WORKDIR /app
 
-ADD https://s3.amazonaws.com/ifcopenshell-builds/ifcopenshell-python-38-v0.6.0-3bbdc3f-linux64.zip /tmp/ifcopenshell.zip
+ADD https://s3.amazonaws.com/ifcopenshell-builds/ifcopenshell-python-38-v0.6.0-721fe47-linux64.zip /tmp/ifcopenshell.zip
 RUN unzip /tmp/ifcopenshell.zip -d .
 
 # file converters
