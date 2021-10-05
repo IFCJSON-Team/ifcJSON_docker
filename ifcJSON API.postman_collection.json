@@ -16,7 +16,49 @@
 						{
 							"key": "file",
 							"type": "file",
-							"src": "air-terminal-element.ifc"
+							"src": "Duplex_A_20110907_optimized.ifc"
+						},
+						{
+							"key": "compact",
+							"value": "False",
+							"description": "Pretty print is turned off and references are created without informative type property, default is False (True/False)",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "version",
+							"value": "4",
+							"description": "Conversion type default is 4, experimental is 5a",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "geometry",
+							"value": "True",
+							"description": "Include geometry, default is True, for IFC4 models tesselate converts geometry to meshes (True/none/tessellate)",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "no_inverse",
+							"value": "False",
+							"description": "Exclude inverse attributes, default is False (True/False)",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "no_ownerhistory",
+							"value": "False",
+							"description": "Exclude IfcOwnerHistory, default is False (True/False)",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "empty_properties",
+							"value": "False",
+							"description": "Include empty properties, default is False (True/False)",
+							"type": "text",
+							"disabled": true
 						}
 					]
 				},
@@ -45,7 +87,7 @@
 						{
 							"key": "file",
 							"type": "file",
-							"src": "air-terminal-element.json"
+							"src": "7m900_tue_hello_wall_with_door.json"
 						}
 					]
 				},
@@ -74,7 +116,7 @@
 						{
 							"key": "file",
 							"type": "file",
-							"src": "air-terminal-element.json"
+							"src": "7m900_tue_hello_wall_with_door.json"
 						}
 					]
 				},
